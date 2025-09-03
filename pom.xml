@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-<parent>
-	<groupId>aa115bd8-788c-4d1b-86f3-725afd99b069</groupId>
-	<artifactId>parent-pom</artifactId>
-	<version>1.0.0</version>
-	<relativePath>../parent-pom/pom.xml</relativePath>
-</parent>
+	<parent>
+		<groupId>6bcda82c-a984-4e56-9c3f-2a64633d58d7</groupId>
+		<artifactId>parent-pom</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../parent-pom/pom.xml</relativePath>
+	</parent>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>6bcda82c-a984-4e56-9c3f-2a64633d58d7</groupId>
 	<artifactId>super-ticket-papi</artifactId>
 	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
@@ -17,7 +16,7 @@
 	<name>super-ticket-papi</name>
 
 	<properties>
-		<api.groupId>aa115bd8-788c-4d1b-86f3-725afd99b069</api.groupId>
+		<api.groupId>6bcda82c-a984-4e56-9c3f-2a64633d58d7</api.groupId>
 		<api.artifactId>super-tickets-papi</api.artifactId>
 		<api.version>1.0.0</api.version>
 	</properties>
@@ -64,5 +63,33 @@
 			<artifactId>mule-secure-configuration-property-module</artifactId>
 			<classifier>mule-plugin</classifier>
 		</dependency>
+		<dependency>
+			<groupId>6bcda82c-a984-4e56-9c3f-2a64633d58d7</groupId>
+			<artifactId>mule-plugin-super-biodata-sapi</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>6bcda82c-a984-4e56-9c3f-2a64633d58d7</groupId>
+			<artifactId>mule-plugin-super-movies-sapi</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-oauth-module</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-objectstore-connector</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>Super-Organization-App</id>
+			<name>Anypoint Exchange</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 </project>
