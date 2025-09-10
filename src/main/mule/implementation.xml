@@ -10,10 +10,10 @@ http://www.mulesoft.org/schema/mule/super-heros-bio-data-sapi http://www.mulesof
 		<logger level="INFO" doc:name="Log Correlation ID" doc:id="11d405d3-6f71-44b3-92c0-c2dca07b7168" message="#['\n********************************************\n' ++ 'Flow started with correlation id - ' ++ correlationId ++  '\n********************************************\n']"/>
 		<scatter-gather doc:name="Scatter-Gather" doc:id="6059f1f0-2674-47a7-b5b1-2d23100f6bd3" >
 			<route >
-				<super-heros-movies-data-sapi:fetch-movies-data-using-cid doc:name="Fetch Movies Data using CID" doc:id="0c8efdb4-8701-4b76-8ae4-28a091059368" config-ref="superHerosMoviesDataSAPIConfig" id="#[vars.CID]" target="superMovies" />
+				<flow-ref doc:name="fetch-movies-data-using-cid" doc:id="15d00fcc-f87b-4b06-8c30-de8e19b61f69" name="fetch-movies-data-using-cid"/>
 			</route>
 			<route >
-				<super-heros-bio-data-sapi:get-biodata-by-cid doc:name="Get BioData by CID" doc:id="dca1e9a9-41e4-4ef6-9f47-5da1f60e8a98" config-ref="superHerosBioDataSAPIConfig" id="#[vars.CID]" target="superBioData" />
+				<flow-ref doc:name="get-biodata-by-cid" doc:id="3dfe9af9-40ba-45c0-9dcb-8bf33988a60f" name="get-biodata-by-cid" target="superBioData"/>
 			</route>
 		</scatter-gather>
 		<ee:transform>
@@ -52,4 +52,13 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
+	<sub-flow name="fetch-movies-data-using-cid" doc:id="e36fc8f2-270c-4524-87a4-636651a9b7b7" >
+		<super-heros-movies-data-sapi:fetch-movies-data-using-cid doc:name="Fetch Movies Data using CID" doc:id="0c8efdb4-8701-4b76-8ae4-28a091059368" config-ref="superHerosMoviesDataSAPIConfig" id="#[vars.CID]" target="superMovies" />
+	</sub-flow>
+	<sub-flow name="get-biodata-by-cid" doc:id="3048f094-c305-422c-b43e-feecddeb0383" >
+		<ee:cache doc:name="Cache" doc:id="60e6eb5b-171e-4c04-a8b0-aebc7943ed1b" cachingStrategy-ref="Caching_Strategy">
+			<super-heros-bio-data-sapi:get-biodata-by-cid doc:name="Get BioData by CID" doc:id="dca1e9a9-41e4-4ef6-9f47-5da1f60e8a98" config-ref="superHerosBioDataSAPIConfig" id="#[vars.CID]" />
+		</ee:cache>
+	</sub-flow>
+
 </mule>

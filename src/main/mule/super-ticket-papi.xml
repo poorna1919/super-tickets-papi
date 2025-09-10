@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule
+	xmlns:os="http://www.mulesoft.org/schema/mule/os"
 	xmlns:oauth="http://www.mulesoft.org/schema/mule/oauth"
 	xmlns:super-heros-bio-data-sapi="http://www.mulesoft.org/schema/mule/super-heros-bio-data-sapi"
 	xmlns:super-heros-movies-data-sapi="http://www.mulesoft.org/schema/mule/super-heros-movies-data-sapi"
@@ -7,14 +8,14 @@
 	xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
 	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
 	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
 http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
 http://www.mulesoft.org/schema/mule/super-heros-movies-data-sapi http://www.mulesoft.org/schema/mule/super-heros-movies-data-sapi/current/mule-super-heros-movies-data-sapi.xsd
 http://www.mulesoft.org/schema/mule/super-heros-bio-data-sapi http://www.mulesoft.org/schema/mule/super-heros-bio-data-sapi/current/mule-super-heros-bio-data-sapi.xsd
-http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oauth/current/mule-oauth.xsd">
+http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oauth/current/mule-oauth.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
 	<http:listener-config
 		name="super-ticket-papi-httpListenerConfig">
 		<http:listener-connection
@@ -51,7 +52,10 @@ http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oa
 		<secure-properties:encrypt algorithm="Blowfish" />
 	</secure-properties:config>
 	<super-heros-movies-data-sapi:config name="superHerosMoviesDataSAPIConfig" doc:name="Super Heros Movies Data SAPI Config" doc:id="a2e80e61-2af4-43af-b25a-764088fe8cc5" property_host="super-movies-sapi-kkjxow.5sc6y6-4.usa-e2.cloudhub.io" property_port="80" property_basePath="/api/v1" property_protocol="HTTP" property_username="f99fd65ad9fe4b72bd893446317791e2" property_password="30b433FDcA7643dda1e6A8a4CD4adc09" />
-	<super-heros-bio-data-sapi:config name="superHerosBioDataSAPIConfig" doc:name="Super Heros Bio Data SAPI Config" doc:id="a7e74a5a-69d8-4524-b1eb-5a5a97227fb2" property_host="super-biodata-sapi-kkjxow.5sc6y6-4.usa-e2.cloudhub.io-magic" property_port="80" property_basePath="/api/v1" property_protocol="HTTP" property_username="7e55a63c5cdb4fb38c77560cc9ad2fb1" property_password="76621D9B475C451ab62114F6c134BB18" />
+	<super-heros-bio-data-sapi:config name="superHerosBioDataSAPIConfig" doc:name="Super Heros Bio Data SAPI Config" doc:id="a7e74a5a-69d8-4524-b1eb-5a5a97227fb2" property_host="super-biodata-sapi-kkjxow.5sc6y6-4.usa-e2.cloudhub.io" property_port="80" property_basePath="/api/v1" property_protocol="HTTP" property_username="7e55a63c5cdb4fb38c77560cc9ad2fb1" property_password="76621D9B475C451ab62114F6c134BB18" />
+	<os:config name="ObjectStore_Config" doc:name="ObjectStore Config" doc:id="1bd2c759-28dc-424e-b12a-b1e60d6b715e" />
+	<os:object-store name="Object_store" doc:name="Object store" doc:id="5120359f-e3f0-4fe7-b668-6f40dc47609b" maxEntries="1000" entryTtl="60" config-ref="ObjectStore_Config"/>
+	<ee:object-store-caching-strategy name="Caching_Strategy" doc:name="Caching Strategy" doc:id="73735f4a-79bf-4d06-bb85-fc0871d1366d" keyGenerationExpression="#[vars.CID]" objectStore="Object_store" />
 	<flow name="super-ticket-papi-main">
 		<http:listener
 			config-ref="super-ticket-papi-httpListenerConfig"
@@ -189,7 +193,7 @@ output application/json
 		</error-handler>
 	</flow>
 	<flow name="get:\tickets\(BID):super-ticket-papi-config">
-		<ee:transform doc:name="Transform Message">
+		<ee:transform doc:name="init params">
 			<ee:variables>
 				<ee:set-variable variableName="BID"><![CDATA[attributes.uriParams.'BID'
 				]]></ee:set-variable>
